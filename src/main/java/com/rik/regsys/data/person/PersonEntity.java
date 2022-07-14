@@ -1,5 +1,6 @@
 package com.rik.regsys.data.person;
 
+import com.rik.regsys.data.event.EventEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,4 +29,9 @@ public class PersonEntity {
 
     @Column(name = "extra_info", length = 1500)
     private String extraInfo;
+
+    @ManyToOne
+    @JoinColumn(name = "event_entity_id")
+    private EventEntity eventEntity;
+
 }
