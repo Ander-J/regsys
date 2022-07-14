@@ -1,0 +1,1 @@
+Registration system program made as a test task for a junior developer position.
