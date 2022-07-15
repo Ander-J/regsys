@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@Table(name = "person")
 public class PersonEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,4 +35,16 @@ public class PersonEntity {
     @JoinColumn(name = "event_entity_id")
     private EventEntity eventEntity;
 
+    @Override
+    public String toString() {
+        return "PersonEntity{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", idCode='" + idCode + '\'' +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", extraInfo='" + extraInfo + '\'' +
+                ", eventEntity=" + eventEntity +
+                '}';
+    }
 }
