@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nullam</title>
+    <link rel="icon" th:href="@{svg/symbol.svg}">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{custom/home.css}" type="text/css">
+</head>
+<body>
+<div class="container">
+    <div class="row" style="margin-top: 30px">
+        <nav class="navbar">
+            <img th:src="@{svg/logo.svg}" style="margin: 10px; margin-left: 20px">
+        </nav>
+    </div>
+    <div class="row align-items-center" style="background-color: #005aa1">
+        <div class="col">
+            <div class="mainpage-text">
+                <p class="text-start">
+                    <strong>Lorem ipsum</strong> dolor sit amet, consectetur adipiscing elit. <strong>Nullam</strong> et sagittis nisl.
+                    Aenean <strong>vitae</strong> mollis est.
+                    Ut vel fringilla arcu, sed <strong>lobortis</strong> dui. Proin viverra, sem ut aliquam elementum, lacus.
+                </p>
+            </div>
+        </div>
+        <div class="col" style="display:flex; justify-content: end">
+            <img th:src="@{img/pilt.jpg}">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col" style="
+            background: #ffffff;
+            margin-right: 15px;
+        ">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Name</th>
+                    <th scope="col">ID</th>
+                </tr>
+                </thead>
+                <tr th:each="person: ${persons}">
+                    <td th:text="${person.firstName} + ' ' + ${person.lastName}"></td>
+                    <td th:text="${person.idCode}"></td>
+                </tr>
+            </table>
+        </div>
+        <div class="col" style="
+            background: #ffffff;
+            margin-left: 15px;
+        ">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Name</th>
+                    <th scope="col">ID</th>
+                </tr>
+                </thead>
+                <tr th:each="person: ${persons}">
+                    <td th:text="${person.firstName} + ' ' + ${person.lastName}"></td>
+                    <td th:text="${person.idCode}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
