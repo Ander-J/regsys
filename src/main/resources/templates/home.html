@@ -5,16 +5,39 @@
     <title>Nullam</title>
     <link rel="icon" th:href="@{svg/symbol.svg}">
     <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}" type="text/css">
-    <link rel="stylesheet" th:href="@{custom/home.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{custom/regsys.css}" type="text/css">
+    <script type="text/javascript" th:src="@{custom/regsys.js}"></script>
 </head>
 <body>
 <div class="container">
-    <div class="row" style="margin-top: 30px">
-        <nav class="navbar">
-            <img th:src="@{svg/logo.svg}" style="margin: 10px; margin-left: 20px">
+    <div class="row custom-margins" style="height: 5em">
+        <nav class="navbar" style="padding: 0px">
+            <div class="row" style="align-items: center; margin: 0px; width: inherit; height: 100%">
+                <div class="col-3">
+                    <img th:src="@{svg/logo.svg}" style="margin: 10px; margin-left: 20px">
+                </div>
+                <div class="col-1 d-flex align-items-center headerItem selectedHeader" th:onclick="window.location.href='/'">
+                    <p style="margin-bottom: 0">
+                        <strong>
+                            AVALEHT
+                        </strong>
+                    </p>
+                </div>
+                <div class="col-2 d-flex align-items-center headerItem" th:onclick="window.location.href='/addEvent'">
+                    <p style="margin: 0 0 0 0.5em">
+                        <strong>
+                            ÜRITUSTE LISAMINE
+                        </strong>
+                    </p>
+                </div>
+                <div class="col-5"></div>
+                <div class="col-1">
+                    <img th:src="@{svg/symbol.svg}">
+                </div>
+            </div>
         </nav>
     </div>
-    <div class="row align-items-center" style="background-color: #005aa1">
+    <div class="row custom-margins align-items-center" style="background-color: #005aa1">
         <div class="col">
             <div class="mainpage-text">
                 <p class="text-start">
@@ -28,42 +51,93 @@
             <img th:src="@{img/pilt.jpg}">
         </div>
     </div>
-    <div class="row">
+    <div class="row custom-margins">
         <div class="col" style="
             background: #ffffff;
             margin-right: 15px;
         ">
-            <table class="table">
+            <div class="table-header">
+                <p class="text-center fs-5" style="padding: 0.7em">Tulevased üritused</p>
+            </div>
+            <table class="table table-sm table-borderless">
                 <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Name</th>
-                    <th scope="col">ID</th>
-                </tr>
                 </thead>
-                <tr th:each="person: ${persons}">
-                    <td th:text="${person.firstName} + ' ' + ${person.lastName}"></td>
-                    <td th:text="${person.idCode}"></td>
+                <tr th:each="upcoming: ${upcomingEvents}">
+                    <td style="width: 60%" th:text="${upcoming.eventName}"></td>
+                    <td  th:text="${#dates.format(upcoming.date, 'dd.MM.yyyy')}"></td>
+                    <td>
+                        <input class="btn table-btn" value="OSAVÕTJAD" th:event-id="${upcoming.id}" th:onclick=redirectEvent(this.getAttribute('event-id'))>
+                    </td>
+                    <td style="width: 10%">
+                        <button class="btn x-btn" th:event-id="${upcoming.id}" th:onclick=deleteEvent(this.getAttribute('event-id'))>
+                            <img class="remove-img" th:src="@{svg/remove.svg}">
+                        </button>
+                    </td>
                 </tr>
             </table>
+            <button type="button" class="btn btn-light " style="background-color: #ffffff; border-width: 0px"
+                    th:onclick="window.location.href='/addEvent'"
+            >
+                <strong>LISA ÜRITUS</strong>
+            </button>
         </div>
         <div class="col" style="
             background: #ffffff;
             margin-left: 15px;
         ">
-            <table class="table">
+            <div class="table-header">
+                <p class="text-center fs-5" style="padding: 0.7em">Toimunud üritused</p>
+            </div>
+            <table class="table table-sm table-borderless">
                 <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Name</th>
-                    <th scope="col">ID</th>
-                </tr>
                 </thead>
-                <tr th:each="person: ${persons}">
-                    <td th:text="${person.firstName} + ' ' + ${person.lastName}"></td>
-                    <td th:text="${person.idCode}"></td>
+                <tr th:each="previous: ${previousEvents}">
+                    <td style="width: 60%" th:text="${previous.eventName}"></td>
+                    <td style="width: 20%" th:text="${#dates.format(previous.date, 'dd.MM.yyyy')}"></td>
+                    <td style="width: 20%">
+                        <input class="btn table-btn" value="OSAVÕTJAD" th:event-id="${previous.id}" th:onclick=redirectEvent(this.getAttribute('event-id'))>
+                    </td>
                 </tr>
             </table>
+        </div>
+    </div>
+    <div class="row custom-margins footer">
+        <div class="row">
+            <div class="col-3">
+                <p class="fs-2">Curabitur</p>
+            </div>
+            <div class="col-3">
+                <p class="fs-2">Fusce</p>
+            </div>
+            <div class="col-6">
+                <p class="fs-2">Kontakt</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class="text-start footer-text">Emauris</p>
+                <p class="text-start footer-text">Kfringilla</p>
+                <p class="text-start footer-text">Oin magna sem</p>
+                <p class="text-start footer-text">Kelementum</p>
+            </div>
+            <div class="col-3">
+                <p class="text-start footer-text">Econsectetur</p>
+                <p class="text-start footer-text">Ksollicitudin</p>
+                <p class="text-start footer-text">Omvulputate</p>
+                <p class="text-start footer-text">Nunc fringilla tellu</p>
+            </div>
+            <div class="col-3">
+                <p class="text-start footer-text"><strong>Peakontor: Tallinnas</strong></p>
+                <p class="text-start footer-text">Väike-Ameerika 1, 11415 Tallinn</p>
+                <p class="text-start footer-text">Telefon: 605 4450</p>
+                <p class="text-start footer-text">Faks: 605 3186</p>
+            </div>
+            <div class="col-3">
+                <p class="text-start footer-text"><strong>Harukontor: Võrus</strong></p>
+                <p class="text-start footer-text">Oja tn 7 (külastusaadress)</p>
+                <p class="text-start footer-text">Telefon: 605 3330</p>
+                <p class="text-start footer-text">Faks: 605 3155</p>
+            </div>
         </div>
     </div>
 </div>
