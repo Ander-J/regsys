@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -19,5 +20,16 @@ public class CompanyService {
         return companyRepository.save(company);
     }
 
+    public CompanyEntity findById(Long id) {
+        Optional<CompanyEntity> companyEntity = companyRepository.findById(id);
+        return companyEntity.orElse(null);
+    }
 
+    public CompanyEntity save(CompanyEntity companyEntity) {
+        return companyRepository.save(companyEntity);
+    }
+
+    public void deleteById(Long id) {
+        companyRepository.deleteById(id);
+    }
 }
