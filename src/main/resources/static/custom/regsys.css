@@ -1,0 +1,118 @@
+body{
+    background-color: #eff2f4;
+}
+
+.navbar{
+    background-color: #ffffff;
+}
+
+.container{
+    width: 61%;
+}
+
+/* Following section of table elements below give every table row ennumeration */
+
+table{
+    counter-reset: rowNumber;
+}
+
+table tr{
+    counter-increment: rowNumber;
+}
+
+table tr td:first-child::before{
+    content: counter(rowNumber) ". ";
+}
+
+.input-field{
+    width: 20em;
+    height: 2em;
+}
+
+.remove-img{
+    height: 1em;
+    width: 1em;
+}
+
+.error-message{
+    color: red;
+}
+
+.custom-margins{
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.btn-tagasi{
+    background-color: #e1e1e1;
+    color: #000000;
+    padding: 2px 15px 3px 15px;
+    width: 5em;
+    margin-right: 5px;
+}
+
+.table-btn{
+    color: #7e7e7e;
+    font-weight: bold;
+    padding: 0px;
+    width: 8em;
+    border: none;
+}
+
+.x-btn{
+    padding: 0px;
+    width: 1em;
+    border: none;
+}
+
+.btn-lisa{
+    background-color: #005aa1;
+    color: #ffffff;
+    padding: 2px 15px 3px 15px;
+    width: 5em;
+}
+
+.footer{
+    background-color: #373737;
+    color: #e0e0e0;
+    padding: 2em;
+}
+
+.footer-text{
+    margin-bottom: 0.5em;
+}
+
+.table{
+    margin: 10px;
+}
+
+.col{
+    padding: 0px;
+}
+
+.mainpage-text{
+    padding: 1em;
+    color: #ffffff;
+    font-size: 1.5em;
+    height: max;
+}
+
+.headerItem{
+    height: inherit;
+    cursor: pointer;
+}
+
+.headerItem:hover{
+    color: #ffffff;
+    background-color: #206FAD;
+}
+
+.selectedHeader{
+    background-color: #005aa1;
+    color: #ffffff;
+}
+
+.table-header{
+    background-color: #005aa1;
+    color: #ffffff;
+}
