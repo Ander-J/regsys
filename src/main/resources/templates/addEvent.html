@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Nullam</title>
+    <link rel="icon" th:href="@{svg/symbol.svg}">
+    <link rel="stylesheet" th:href="@{bootstrap/css/bootstrap.min.css}" type="text/css">
+    <link rel="stylesheet" th:href="@{custom/regsys.css}" type="text/css">
+    <script type="text/javascript" th:src="@{custom/regsys.js}"></script>
+</head>
+<body>
+<div class="container">
+    <div class="row custom-margins" style="height: 5em">
+        <nav class="navbar" style="padding: 0px">
+            <div class="row" style="align-items: center; margin: 0px; width: inherit; height: 100%">
+                <div class="col-3">
+                    <img th:src="@{svg/logo.svg}" style="margin: 10px; margin-left: 20px">
+                </div>
+                <div class="col-1 d-flex align-items-center headerItem"
+                     th:onclick="window.location.href='/'">
+                    <p style="margin-bottom: 0">
+                        <strong>
+                            AVALEHT
+                        </strong>
+                    </p>
+                </div>
+                <div class="col-2 d-flex align-items-center headerItem selectedHeader" th:onclick="window.location.href='/addEvent'">
+                    <p style="margin: 0 0 0 0.5em">
+                        <strong>
+                            ÜRITUSTE LISAMINE
+                        </strong>
+                    </p>
+                </div>
+                <div class="col-5"></div>
+                <div class="col-1">
+                    <img th:src="@{svg/symbol.svg}">
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="row" style="height: 5em">
+        <div class="col-3" style="background-color: #005aa1">
+            <p class="fs-1 fw-light" style="color: #ffffff">Ürituse lisamine</p>
+        </div>
+        <div class="col-9" style="height: inherit; padding: 0px">
+            <img th:src="@{img/libled.jpg}" style="max-height: 100%; width: 100%; object-fit: none">
+        </div>
+    </div>
+    <div class="row custom-margins" style="background: #ffffff; padding: 2em 0em 2em 0em; margin-top: 0px">
+        <div class="col-3"></div>
+        <div class="col-6" style="
+            margin-right: 15px;
+        ">
+            <p class="fs-3 text-start" style="color: #005aa1">Ürituse lisamine</p>
+            <form th:action="@{/addEvent}" th:object="${eventEntity}" method="post">
+                <div class="row">
+                    <div class="col-4">
+                        <p class="text-start">Ürituse nimi:</p>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" th:field="*{eventName}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="text-start">Toimumisaeg:</p>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" name="dateString" placeholder="pp.kk.aaaa hh:mm">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="text-start">Koht:</p>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" th:field="*{location}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4">
+                        <p class="text-start">Lisainfo:</p>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" th:field="*{extraInfo}">
+                    </div>
+                </div>
+                <div th:if="${#fields.hasErrors('*')}">
+                    <ul>
+                        <li class="error-message" th:each="err: ${#fields.allErrors()}" th:text="${err}" />
+                    </ul>
+                </div>
+                <input class="btn btn btn-tagasi" th:onclick="history.back()" value="Tagasi" />
+                <input class="btn btn btn-lisa" type="submit" name="saveEvent" value="Lisa" />
+            </form>
+        </div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row custom-margins footer">
+        <div class="row">
+            <div class="col-3">
+                <p class="fs-2">Curabitur</p>
+            </div>
+            <div class="col-3">
+                <p class="fs-2">Fusce</p>
+            </div>
+            <div class="col-6">
+                <p class="fs-2">Kontakt</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <p class="text-start footer-text">Emauris</p>
+                <p class="text-start footer-text">Kfringilla</p>
+                <p class="text-start footer-text">Oin magna sem</p>
+                <p class="text-start footer-text">Kelementum</p>
+            </div>
+            <div class="col-3">
+                <p class="text-start footer-text">Econsectetur</p>
+                <p class="text-start footer-text">Ksollicitudin</p>
+                <p class="text-start footer-text">Omvulputate</p>
+                <p class="text-start footer-text">Nunc fringilla tellu</p>
+            </div>
+            <div class="col-3">
+                <p class="text-start footer-text"><strong>Peakontor: Tallinnas</strong></p>
+                <p class="text-start footer-text">Väike-Ameerika 1, 11415 Tallinn</p>
+                <p class="text-start footer-text">Telefon: 605 4450</p>
+                <p class="text-start footer-text">Faks: 605 3186</p>
+            </div>
+            <div class="col-3">
+                <p class="text-start footer-text"><strong>Harukontor: Võrus</strong></p>
+                <p class="text-start footer-text">Oja tn 7 (külastusaadress)</p>
+                <p class="text-start footer-text">Telefon: 605 3330</p>
+                <p class="text-start footer-text">Faks: 605 3155</p>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
